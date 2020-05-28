@@ -2,17 +2,19 @@
 {
     public class Usuario
     {
-        public string usuario { get; set; }
+        public int idUser { get; set; }
+        public string Username { get; set; }
+        public string Fullname { get; set; }
         public string contrasena { get; set; }
-        public bool admin { get; set; }
-        public bool activo { get; set; }
+        public bool userType { get; set; }
 
         public Usuario()
         {
-            usuario = "";
+            idUser = 0;
+            Username = "";
+            Fullname = "";
             contrasena = "";
-            admin = false;
-            activo = false;
+            userType = false;
         }
     }
 }

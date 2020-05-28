@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Windows.Forms;
 
 namespace Parcial2
@@ -17,12 +15,10 @@ namespace Parcial2
             // Actualizar ComboBox
             comboBox1.DataSource = null;
             comboBox1.ValueMember = "contrasena";
-            comboBox1.DisplayMember = "usuario";
+            comboBox1.DisplayMember = "Username";
             comboBox1.DataSource = UsuarioDAO.getLista();
         }
 
-               
-        
         //Cambiar Contraseña
         private void button1_Click(object sender, EventArgs e)
         {
@@ -37,21 +33,25 @@ namespace Parcial2
             {
                 
                 Usuario u = (Usuario) comboBox1.SelectedItem;
-
-                //if (u.activo)
-                //{
-                    //RegistroDAO.iniciarSesion(u.usuario);
+                
                     
                     MessageBox.Show("¡Bienvenido!", 
                         "Parcial2", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
-                    Admin ventana = new Admin(u);
-                    ventana.Show();
-                    this.Hide();
-                //}
-                //else
-                //   MessageBox.Show("Su cuenta se encuentra inactiva, favor hable con el administrador", 
-                //        "Clase GUI 05", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                    if (u.userType)
+                    {
+                        Admin ventana = new Admin(u);
+                        ventana.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+
+                        User ventana = new User(u);
+                        ventana.Show();
+                        this.Hide();
+                    }
             }
             else
                 MessageBox.Show("¡Contraseña incorrecta!", "Clase GUI 05",
